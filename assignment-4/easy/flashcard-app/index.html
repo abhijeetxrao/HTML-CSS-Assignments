@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class ="box">
+    <h1>FlashCard Learning</h1>
+    <div class ="setup">
+      <select id="topic">
+        <option value="math">Math</option>
+        <option value="'science">Science</option>
+      </select>
+      <input type ="number" placeholder ="Enter number of questions! min ="1" max ="5">
+      <button onclick = "startQuiz()">Start</button>
+    </div>
+    <div id="quiz" class="hidden">
+
+      <div id="flashcard">
+        <div class="card" id="card">
+          <div id="question" class="card-face front"></div>
+          <div id ='answer' class="card-face back"></div>
+        </div>
+      </div>
+      <button onclick="markCorrect()">Correct</button>
+      <button onclick="markWrong()">Wrong</button>
+
+    </div>
+    <div id="result" class="hidden result"></div>
+  </div>
+
+
+  <script>
+    const flashcards = {
+    math: [
+        {q: "5 + 3 = ?", a: "8"},
+        {q: "12 - 4 = ?", a: "8"},
+        {q: "6 × 2 = ?", a: "12"},
+        {q: "9 ÷ 3 = ?", a: "3"},
+        {q: "Square root of 16?", a: "4"}
+    ],
+    science: [
+        {q: "Water’s chemical formula?", a: "H₂O"},
+        {q: "Planet known as Red Planet?", a: "Mars"},
+        {q: "Gas essential for breathing?", a: "Oxygen"},
+        {q: "Human body’s largest organ?", a: "Skin"},
+        {q: "Speed of light unit?", a: "km/s"}
+    ]
+};
+  </script>
+</body>
+</html>
