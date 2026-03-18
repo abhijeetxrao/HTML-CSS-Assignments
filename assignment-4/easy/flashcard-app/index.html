@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel ="stylesheet" href = "style.css"/>
 </head>
 <body>
   <div class ="box">
@@ -13,7 +14,7 @@
         <option value="math">Math</option>
         <option value="'science">Science</option>
       </select>
-      <input type ="number" placeholder ="Enter number of questions! min ="1" max ="5">
+      <input type ="number" placeholder ="Enter number of questions!" id="count" min ="1" max ="5">
       <button onclick = "startQuiz()">Start</button>
     </div>
     <div id="quiz" class="hidden">
@@ -49,6 +50,60 @@
         {q: "Speed of light unit?", a: "km/s"}
     ]
 };
+
+let selectedCards = [];
+let index =0;
+let score = 0;
+
+function startQuiz(){
+  const topic = document.getElementById('topic').value;
+  const count = parseInt(document.getElementById('count').value);
+  if(!count||count<1||count>5){
+    alert("Please enter a valid number of questions (1-5)!");
+    return;
+  }
+  selectedCards = flashcards.topic.slice(0, count);
+  index = 0;
+  score = 0;
+  console.log(selectedCards);
+  document.getElementById('setup').classList.add('hidden')
+  document.getElementById('quiz').classList.remove("hidden");
+  showCard()
+}
+function showCard(){
+  const card = selectedCards[index];
+  document.getElementById("card").classList.remove('flip');
+  document.getElementById("question").textContent = card.q;
+  document.getElementById("answer").textContent = card.a;
+}
+function flipCard(){
+  document.getElementById("card").classList.toggle('flip');
+}
+
+function markCorrect(){
+  score++;
+  nextCard();
+}
+function markWrong(){
+  nextCard();
+}
+
+
+function nextCard(){
+  index++;
+  if(index>=selectedCards.length()){
+    endQuiz();
+  }
+  else{
+    showCard();
+  }
+}
+function endQuiz(){
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  document.getElementById('result').textContent = `Quiz Over! Your score: ${score}/${selectedCards.length}`;
+
+}
   </script>
 </body>
 </html>
